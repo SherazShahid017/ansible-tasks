@@ -1,16 +1,23 @@
 ---
 - hosts: docker
-  connection: local
   become: true
+  connection: local
   tasks:
-  - name: Install Docker
+  - name: Install Git
     apt:
-      pkg:
-      - python3-pip
-      - docker
+      pkg: 
+      - git
       state: latest
-      # update_cache: true
-      
+      #update_cache: true
+ 
+  - name: Git Clone Repo
+    git:
+      repo: https://github.com/LukeBenson/install-scripts
+      dest: ./git
+ 
+  - name: Running Docker Script
+    script: /home/sheraz_shahid/ansible-tasks/extension/git/docker_install.sh 
+
 - hosts: NGINX
   become: true
   tasks:
@@ -19,3 +26,7 @@
       name: nginx
       state: latest
       update_cache: true
+  - name: Start NGINX
+    service:
+      name: nginx
+      state: started
