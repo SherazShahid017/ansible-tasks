@@ -1,0 +1,21 @@
+---
+- hosts: docker
+  connection: local
+  become: true
+  tasks:
+  - name: Install Docker
+    apt:
+      pkg:
+      - python3-pip
+      - docker
+      state: latest
+      # update_cache: true
+      
+- hosts: NGINX
+  become: true
+  tasks:
+  - name: Install NGINX
+    apt:
+      name: nginx
+      state: latest
+      update_cache: true

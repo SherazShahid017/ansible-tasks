@@ -1,0 +1,15 @@
+---
+- hosts: 127.0.0.1
+  connection: local
+  become: true
+  tasks:
+  - name: Install Git
+    apt:
+      pkg: 
+      - git
+      state: latest
+      update_cache: true
+  - name: Git Clone Repo
+    git:
+      repo: "{{ repo }}"
+      dest: ./github
