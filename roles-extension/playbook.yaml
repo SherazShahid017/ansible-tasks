@@ -7,3 +7,8 @@
   become: true
   roles: 
   - jenkins
+
+- hosts: nginx
+  become: true
+  roles:
+  - nginx    
