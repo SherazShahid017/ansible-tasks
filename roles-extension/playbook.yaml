@@ -12,8 +12,4 @@
   become: true
   roles:
   - nginx 
-
-- hosts: docker-compose
-  become: true
-  roles:
-  - docker-compose   
+ 
